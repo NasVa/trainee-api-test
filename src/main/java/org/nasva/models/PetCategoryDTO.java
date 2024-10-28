@@ -21,17 +21,4 @@ public class PetCategoryDTO {
 
     private String name;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof PetCategoryDTO)) return false;
-        PetCategoryDTO that = (PetCategoryDTO) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(name, that.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name);
-    }
 }

@@ -1,18 +1,20 @@
 package org.nasva.services;
 
 import io.restassured.http.ContentType;
-import org.nasva.constants.Constants;
+import org.aeonbits.owner.ConfigFactory;
+import org.nasva.config.ServerConfig;
 import org.nasva.models.AddPetDTO;
 
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
 
-
 public class PetService {
-    private static final String PET_URL = Constants.BASE_URL + "/pet/";
-    public static AddPetDTO addPet(AddPetDTO petDTO){
-        return given().log().body()
+    private static final ServerConfig urlsConfig = ConfigFactory.create(ServerConfig.class, System.getProperties());
+    private static final String PET_URL = urlsConfig.getBaseUrl() + "/pet/";
+
+    public static AddPetDTO addPet(AddPetDTO petDTO) {
+        return given().log().uri()
                 .contentType(ContentType.JSON)
                 .body(petDTO).
                 when()
@@ -22,8 +24,8 @@ public class PetService {
                 .extract().as(AddPetDTO.class);
     }
 
-    public static void deletePets(List<AddPetDTO> addedPets){
-        for(AddPetDTO pet : addedPets){
+    public static void deletePets(List<AddPetDTO> addedPets) {
+        for (AddPetDTO pet : addedPets) {
             given().log().body().
                     when()
                     .delete(PET_URL + pet.getId()).

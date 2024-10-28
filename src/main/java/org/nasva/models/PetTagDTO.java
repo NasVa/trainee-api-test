@@ -16,21 +16,9 @@ import java.util.Objects;
 @Setter
 @NoArgsConstructor
 public class PetTagDTO {
+
     private Long id;
 
     private String name;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof PetTagDTO)) return false;
-        PetTagDTO that = (PetTagDTO) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(name, that.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name);
-    }
 }
