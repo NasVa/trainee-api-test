@@ -12,7 +12,8 @@ import java.util.Random;
 
 public class PetGenerator {
     private static final Long ID = 653621L;
-    public static AddPetDTO generateAddPetDto(long id){
+
+    public static AddPetDTO generateAddPetDto(long id) {
         Faker faker = new Faker();
         return AddPetDTO.builder()
                 .name(faker.animal().name())
@@ -24,23 +25,23 @@ public class PetGenerator {
                 .build();
     }
 
-    public static AddPetDTO generateAddPetDto(){
+    public static AddPetDTO generateAddPetDto() {
         return generateAddPetDto(ID);
     }
 
-    public static PetTagDTO generateCorrectTagCategory(Faker faker){
+    public static PetTagDTO generateCorrectTagCategory(Faker faker) {
         return PetTagDTO.builder()
                 .id(1L)
                 .name(faker.cat().registry())
                 .build();
     }
 
-    public static PetStatus generateStatus(){
+    public static PetStatus generateStatus() {
         List<PetStatus> list = Arrays.stream(PetStatus.values()).toList();
         return list.get(new Random().nextInt(list.size()));
     }
 
-    public static PetCategoryDTO generateCorrectPetCategory(Faker faker){
+    public static PetCategoryDTO generateCorrectPetCategory(Faker faker) {
         return PetCategoryDTO.builder()
                 .id(1L)
                 .name(faker.dog().breed())

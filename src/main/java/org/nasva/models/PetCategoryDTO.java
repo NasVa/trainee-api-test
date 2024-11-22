@@ -7,8 +7,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
 
-import java.util.Objects;
-
 @Builder
 @JsonSerialize
 @AllArgsConstructor
@@ -16,9 +14,6 @@ import java.util.Objects;
 @Setter
 @NoArgsConstructor
 public class PetCategoryDTO {
-
     private Long id;
-
     private String name;
-
 }

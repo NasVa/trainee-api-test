@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.*;
 
 import java.util.List;
-import java.util.Objects;
 
 @Builder
 @JsonSerialize
@@ -14,15 +13,9 @@ import java.util.Objects;
 @NoArgsConstructor
 public class AddPetDTO {
     private String name;
-
     private List<String> photoUrls;
-
     private Long id;
-
     private PetCategoryDTO category;
-
     private List<PetTagDTO> tags;
-
     private PetStatus status;
-
 }
