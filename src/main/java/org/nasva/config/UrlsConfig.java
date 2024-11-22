@@ -5,7 +5,6 @@ import org.aeonbits.owner.Config;
 @Config.Sources(
         {"classpath:UrlsConfig.properties"}
 )
-public interface ServerConfig extends Config {
-    @Key("webapp.urls.baseUrl")
-    String getBaseUrl();
+public interface UrlsConfig extends Config {
+    String baseUrl();
 }
