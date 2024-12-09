@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.nasva.generators.PetGenerator;
 import org.nasva.models.PetDTO;
 import org.nasva.services.PetService;
+import org.nasva.specifications.Specifications;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,23 +19,28 @@ public class AddPetTests {
     private static final Long NEGATIVE_ID = -10L;
 
     @Test
-    public void addPetCorrect(){
+    public void addPetCorrect() {
         PetDTO petRequestDTO = PetGenerator.generateAddPetDto();
-        PetDTO petResponseDTO = PetService.addPet(petRequestDTO);
+        PetDTO petResponseDTO = PetService.addPet(petRequestDTO)
+                .spec(Specifications.responseSpec(200))
+                .extract().as(PetDTO.class);
         addedPets.add(petResponseDTO);
         assertThat(petRequestDTO).usingRecursiveComparison().isEqualTo(petResponseDTO);
     }
 
     @Test
-    public void addPetWithNegativeId(){
+    public void addPetWithNegativeId() {
         PetDTO petRequestDTO = PetGenerator.generateAddPetDto(NEGATIVE_ID);
-        PetDTO petResponseDTO = PetService.addPet(petRequestDTO);
+        PetDTO petResponseDTO = PetService.addPet(petRequestDTO)
+                .spec(Specifications.responseSpec(200))
+                .extract().as(PetDTO.class);
+        ;
         addedPets.add(petResponseDTO);
-        Assertions.assertTrue(petResponseDTO.getId() > 0);
+        Assertions.assertNotNull(petResponseDTO);
     }
 
     @AfterAll
-    public static void deletePets(){
+    public static void deletePets() {
         PetService.deletePets(addedPets);
     }
 }

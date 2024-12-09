@@ -1,7 +1,14 @@
 package org.nasva.models;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum PetStatus {
-    available,
-    pending,
-    sold
+    AVAILABLE,
+    PENDING,
+    SOLD;
+
+    @JsonValue
+    final String value() {
+        return this.name().toLowerCase();
+    }
 }

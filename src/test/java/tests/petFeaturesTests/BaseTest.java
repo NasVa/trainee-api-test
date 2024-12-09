@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.nasva.generators.PetGenerator;
 import org.nasva.models.PetDTO;
 import org.nasva.services.PetService;
+import org.nasva.specifications.Specifications;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,13 +16,17 @@ public class BaseTest {
     public static PetDTO existingPet;
 
     @BeforeAll
-    public static void addPet(){
+    public static void addPet() {
         PetDTO petRequestDTO = PetGenerator.generateAddPetDto();
-        existingPet = PetService.addPet(petRequestDTO);
+        existingPet = PetService.addPet(petRequestDTO)
+                .spec(Specifications.responseSpec(200))
+                .extract().as(PetDTO.class);
+        ;
         addedPets.add(existingPet);
     }
+
     @AfterAll
-    public static void deletePets(){
+    public static void deletePets() {
         PetService.deletePets(addedPets);
     }
 }
