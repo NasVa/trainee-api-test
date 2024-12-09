@@ -1,8 +1,8 @@
 package org.nasva.generators;
 
 import com.github.javafaker.Faker;
-import org.nasva.models.AddPetDTO;
 import org.nasva.models.PetCategoryDTO;
+import org.nasva.models.PetDTO;
 import org.nasva.models.PetStatus;
 import org.nasva.models.PetTagDTO;
 
@@ -12,10 +12,9 @@ import java.util.Random;
 
 public class PetGenerator {
     private static final Long ID = 653621L;
-
-    public static AddPetDTO generateAddPetDto(long id) {
+    public static PetDTO generateAddPetDto(long id){
         Faker faker = new Faker();
-        return AddPetDTO.builder()
+        return PetDTO.builder()
                 .name(faker.animal().name())
                 .photoUrls(List.of(faker.internet().url()))
                 .id(id)
@@ -25,7 +24,7 @@ public class PetGenerator {
                 .build();
     }
 
-    public static AddPetDTO generateAddPetDto() {
+    public static PetDTO generateAddPetDto(){
         return generateAddPetDto(ID);
     }
 

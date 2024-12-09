@@ -1,0 +1,27 @@
+package tests.petFeaturesTests;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.nasva.generators.PetGenerator;
+import org.nasva.models.PetDTO;
+import org.nasva.services.PetService;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class BaseTest {
+    public static final List<PetDTO> addedPets = new ArrayList<>();
+    public static final Long NOT_EXISTING = -10L;
+    public static PetDTO existingPet;
+
+    @BeforeAll
+    public static void addPet(){
+        PetDTO petRequestDTO = PetGenerator.generateAddPetDto();
+        existingPet = PetService.addPet(petRequestDTO);
+        addedPets.add(existingPet);
+    }
+    @AfterAll
+    public static void deletePets(){
+        PetService.deletePets(addedPets);
+    }
+}

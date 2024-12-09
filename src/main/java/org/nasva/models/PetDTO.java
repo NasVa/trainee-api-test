@@ -11,7 +11,8 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class AddPetDTO {
+@EqualsAndHashCode
+public class PetDTO {
     private String name;
     private List<String> photoUrls;
     private Long id;
