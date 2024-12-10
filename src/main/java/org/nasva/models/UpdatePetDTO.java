@@ -1,11 +1,7 @@
 package org.nasva.models;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Builder
 @JsonSerialize
@@ -13,7 +9,8 @@ import lombok.NoArgsConstructor;
 @Getter
 @Setter
 @NoArgsConstructor
-public class PetTagDTO {
-    private Long id;
+public class UpdatePetDTO {
     private String name;
+    private Long petId;
+    private PetStatus status;
 }
